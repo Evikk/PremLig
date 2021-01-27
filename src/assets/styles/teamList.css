@@ -4,7 +4,6 @@ table {
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
-    white-space: nowrap;
     background-color: white;
     font-size: 1.5rem;
     border-radius: 6px;
@@ -14,6 +13,10 @@ table {
 
 table tr:nth-child(even) {
     background: #F8F8F8;
+}
+tbody tr:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.40) 0px 0px 40px 0px;
 }
 table thead th {
     color: #ffffff;
@@ -28,7 +31,7 @@ thead tr th:last-child {
     border-top-right-radius: 6px;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 580px) {
     table thead {
       display: none;
     }

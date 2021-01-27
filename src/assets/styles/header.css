@@ -1,0 +1,17 @@
+header {
+    
+    background-color: lavender;
+}
+.header-content {
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+}
+.header-content h1 {
+    font-family: Premier;
+}
+
+.logo-img {
+    width: 80px;
+}
+  

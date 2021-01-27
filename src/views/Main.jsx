@@ -9,7 +9,8 @@ export class Main extends Component {
 
     state = {
         teams: [],
-        sortBy: null
+        sortBy: null,
+        showFavOnly: false
     }
 
     componentDidMount(){
@@ -40,7 +41,7 @@ export class Main extends Component {
     }
 
     getTeamsForDisplay = ()=> {
-        const { teams, sortBy } = this.state
+        const { teams, sortBy, showFavOnly } = this.state
         if (sortBy === 'favorite') {
             return teams.sort((a,b)=>{
                 return b.isFavorite - a.isFavorite
@@ -53,22 +54,35 @@ export class Main extends Component {
                 return 0;
             })
         }
+        if (showFavOnly) return teams.filter(team => team.isFavorite)
         return teams
     }
 
-    handleSort = (ev)=> {
-        this.setState({sortBy: ev.target.value})
+    handleSortFilter = (ev)=> {
+        if (ev.target.name === 'favOnly') this.setState({showFavOnly: ev.target.checked})
+        else this.setState({sortBy: ev.target.value})
+    }
+
+    clearFavorites = ()=> {
+        const teamsCopy = this.state.teams
+        teamsCopy.map(team=>team.isFavorite = false)
+        this.setState({teams: teamsCopy}, ()=>{
+            storageService.save(STORAGE_KEY,this.state.teams)
+        })
     }
 
     render(){
         const teams = this.getTeamsForDisplay()
         return (
             <main>
-                <select name="sortBy" onChange={this.handleSort}>
-                    <option value="">Sort By</option>
+                <select name="sortBy" onChange={this.handleSortFilter}>
+                    <option value="">Sort by</option>
                     <option value="name">By Name</option>
                     <option value="favorite">Favorites First</option>
                 </select>
+                <label htmlFor="favOnly">Show Favorites Only</label>
+                <input type="checkbox" name="favOnly" id="favOnly" onChange={this.handleSortFilter}/>
+                <button onClick={this.clearFavorites}>Clear Favorites</button>
                 <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
             </main>
         )
