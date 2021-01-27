@@ -33,6 +33,12 @@ img {
   width: 100%;
 }
 
+main {
+  min-height: calc(100vh - 103px);
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 860px) {
   html {
     font-size: 13px;

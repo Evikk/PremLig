@@ -2,6 +2,8 @@ import { Component } from "react";
 import { storageService } from "../services/storageService";
 import { teamService } from "../services/teamService";
 import { TeamList } from "../cmps/TeamList";
+import { Pagination } from "../cmps/Pagination";
+import { FilterSort } from "../cmps/FilterSort";
 
 const STORAGE_KEY = 'teams_db'
 
@@ -10,7 +12,11 @@ export class Main extends Component {
     state = {
         teams: [],
         sortBy: null,
-        showFavOnly: false
+        showFavOnly: false,
+        pagination: {
+            itemsToShow: 0,
+            currPage: 1
+        }
     }
 
     componentDidMount(){
@@ -41,25 +47,39 @@ export class Main extends Component {
     }
 
     getTeamsForDisplay = ()=> {
-        const { teams, sortBy, showFavOnly } = this.state
+        const { teams, sortBy, showFavOnly, pagination } = this.state
         if (sortBy === 'favorite') {
-            return teams.sort((a,b)=>{
+            teams.sort((a,b)=>{
                 return b.isFavorite - a.isFavorite
             })
         }
         else if (sortBy === 'name') {
-            return teams.sort ((a,b) => {
+            teams.sort ((a,b) => {
                 if(a.name < b.name) return -1
                 if(a.name > b.name) return 1
                 return 0;
             })
         }
-        if (showFavOnly) return teams.filter(team => team.isFavorite)
+        if (showFavOnly) teams.filter(team => team.isFavorite)
+        if (pagination.itemsToShow !== 0) return this.paginate(teams)
         return teams
+    }
+
+    paginate = (teams)=> {
+        const { itemsToShow, currPage } = this.state.pagination
+        // if (currPage === 0) return teams.slice(0, itemsToShow)
+        return teams.slice((currPage - 1) * itemsToShow, currPage * itemsToShow)
     }
 
     handleSortFilter = (ev)=> {
         if (ev.target.name === 'favOnly') this.setState({showFavOnly: ev.target.checked})
+        else if (ev.target.name === 'paginate') {
+            const paginationCopy = {...this.state.pagination}
+            paginationCopy.itemsToShow = +ev.target.value
+            paginationCopy.currPage = 1
+            this.setState({pagination: paginationCopy})
+        }
+        
         else this.setState({sortBy: ev.target.value})
     }
 
@@ -71,19 +91,26 @@ export class Main extends Component {
         })
     }
 
+    onPageChange = (page)=>{
+        const paginationCopy = {...this.state.pagination}
+        paginationCopy.currPage = page
+        this.setState({pagination: paginationCopy})
+    }
+
     render(){
         const teams = this.getTeamsForDisplay()
         return (
             <main>
-                <select name="sortBy" onChange={this.handleSortFilter}>
-                    <option value="">Sort by</option>
-                    <option value="name">By Name</option>
-                    <option value="favorite">Favorites First</option>
-                </select>
-                <label htmlFor="favOnly">Show Favorites Only</label>
-                <input type="checkbox" name="favOnly" id="favOnly" onChange={this.handleSortFilter}/>
-                <button onClick={this.clearFavorites}>Clear Favorites</button>
+                <FilterSort handleSortFilter={this.handleSortFilter} clearFavorites={this.clearFavorites}/>
                 <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
+                {this.state.pagination.itemsToShow &&
+                <Pagination 
+                    teamsLength={this.state.teams.length} 
+                    itemsPerPage={this.state.pagination.itemsToShow}
+                    currPage={this.state.pagination.currPage}
+                    onPageChange={this.onPageChange}
+                    />
+                }
             </main>
         )
     }
