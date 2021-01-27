@@ -47,7 +47,8 @@ export class Main extends Component {
     }
 
     getTeamsForDisplay = ()=> {
-        const { teams, sortBy, showFavOnly, pagination } = this.state
+        var { teams, sortBy, showFavOnly, pagination } = this.state
+        if (showFavOnly) teams = teams.filter(team => team.isFavorite)
         if (sortBy === 'favorite') {
             teams.sort((a,b)=>{
                 return b.isFavorite - a.isFavorite
@@ -60,14 +61,17 @@ export class Main extends Component {
                 return 0;
             })
         }
-        if (showFavOnly) teams.filter(team => team.isFavorite)
+        else if (sortBy === 'year') {
+            teams.sort((a,b)=>{
+                return b.founded - a.founded
+            })
+        }
         if (pagination.itemsToShow !== 0) return this.paginate(teams)
         return teams
     }
 
     paginate = (teams)=> {
         const { itemsToShow, currPage } = this.state.pagination
-        // if (currPage === 0) return teams.slice(0, itemsToShow)
         return teams.slice((currPage - 1) * itemsToShow, currPage * itemsToShow)
     }
 
@@ -101,15 +105,17 @@ export class Main extends Component {
         const teams = this.getTeamsForDisplay()
         return (
             <main>
-                <FilterSort handleSortFilter={this.handleSortFilter} clearFavorites={this.clearFavorites}/>
-                <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
-                {this.state.pagination.itemsToShow &&
+                <div>
+                    <FilterSort handleSortFilter={this.handleSortFilter} clearFavorites={this.clearFavorites}/>
+                    <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
+                </div>
+                {this.state.pagination.itemsToShow !== 0 &&
                 <Pagination 
                     teamsLength={this.state.teams.length} 
                     itemsPerPage={this.state.pagination.itemsToShow}
                     currPage={this.state.pagination.currPage}
                     onPageChange={this.onPageChange}
-                    />
+                />
                 }
             </main>
         )

@@ -8,7 +8,6 @@ table {
     font-size: 1.5rem;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 40px 0px;
-
 }
 
 table tr:nth-child(even) {
@@ -31,21 +30,37 @@ thead tr th:last-child {
     border-top-right-radius: 6px;
 }
 
+.pagination-container {
+    width: 100%;
+}
+
 .pages-list {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 0;
 }
 
-.pages-list li {
+.pages-list i {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.false {
+    color: grey;
+    pointer-events: none;
+}
+
+.pages-list > * {
     font-size: 1.3rem;
     cursor: pointer;
-    margin: 5px;
+    margin: 5px 10px;
 }
 
-.current-page {
+li.current-page {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 }
 
 @media (max-width: 580px) {
@@ -59,4 +74,3 @@ thead tr th:last-child {
     }
     
 }
-
