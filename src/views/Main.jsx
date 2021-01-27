@@ -6,8 +6,10 @@ import { TeamList } from "../cmps/TeamList";
 const STORAGE_KEY = 'teams_db'
 
 export class Main extends Component {
+
     state = {
-        teams: []
+        teams: [],
+        sortBy: null
     }
 
     componentDidMount(){
@@ -37,14 +39,38 @@ export class Main extends Component {
         })
     }
 
-    
+    getTeamsForDisplay = ()=> {
+        const { teams, sortBy } = this.state
+        if (sortBy === 'favorite') {
+            return teams.sort((a,b)=>{
+                return b.isFavorite - a.isFavorite
+            })
+        }
+        else if (sortBy === 'name') {
+            return teams.sort ((a,b) => {
+                if(a.name < b.name) return -1
+                if(a.name > b.name) return 1
+                return 0;
+            })
+        }
+        return teams
+    }
+
+    handleSort = (ev)=> {
+        this.setState({sortBy: ev.target.value})
+    }
 
     render(){
-        const { teams } = this.state
+        const teams = this.getTeamsForDisplay()
         return (
-            <div>
+            <main>
+                <select name="sortBy" onChange={this.handleSort}>
+                    <option value="">Sort By</option>
+                    <option value="name">By Name</option>
+                    <option value="favorite">Favorites First</option>
+                </select>
                 <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
-            </div>
+            </main>
         )
     }
 }

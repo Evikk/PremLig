@@ -1,4 +1,5 @@
 import { TeamItem } from "./TeamItem"
+import "../assets/styles/teamList.css"
 
 export function TeamList ({teams, toggleFavorite}) {
     return (

@@ -24,12 +24,20 @@ a {
   color: whitesmoke;
 }
 
-.fa-star,
-.fa-star-o {
-  font-size: 25px;
+img {
+  width: 100%;
 }
 
-.yellow {
-  color: gold;
-  text-shadow: 0 0 3px #000;
+@media (max-width: 860px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media (max-width: 680px) {
+  html {
+    font-size: 16px;
+  }
+  .main-container > * {
+    grid-column: 1 /-1;
+  }
 }

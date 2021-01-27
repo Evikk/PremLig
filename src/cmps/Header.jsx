@@ -1,5 +1,7 @@
 export function Header() {
     return (
-        <div className="main-container full">Ahalan Header</div>
+        <header className="">
+            <h1>PremLig</h1>
+        </header>
     )
 }

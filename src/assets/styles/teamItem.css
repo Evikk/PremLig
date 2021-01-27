@@ -1,0 +1,41 @@
+.logo-wrapper {
+    width: 80px;
+    margin: 5px auto;
+}
+
+.fa-star,
+.fa-star-o {
+  font-size: 25px;
+}
+
+.yellow {
+  color: gold;
+  text-shadow: 0 0 3px #000;
+}
+
+.title-mobile {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .logo-wrapper {
+      width: 50px;
+    }
+}
+@media (max-width: 680px) {
+    .logo-wrapper {
+        width: 150px;
+    }
+    .star-icon-wrapper {
+        text-align: left;
+    }
+    .fa-star,
+    .fa-star-o {
+        font-size: 35px;
+    }
+    .title-mobile {
+        display: inline;
+        font-weight: bold;
+    }
+    
+}
