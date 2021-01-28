@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/PremLig/static/css/main.dbdc8c97.chunk.css",
+    "main.js": "/PremLig/static/js/main.f173dc12.chunk.js",
+    "main.js.map": "/PremLig/static/js/main.f173dc12.chunk.js.map",
+    "runtime-main.js": "/PremLig/static/js/runtime-main.bf1c4685.js",
+    "runtime-main.js.map": "/PremLig/static/js/runtime-main.bf1c4685.js.map",
+    "static/js/2.4d7a0625.chunk.js": "/PremLig/static/js/2.4d7a0625.chunk.js",
+    "static/js/2.4d7a0625.chunk.js.map": "/PremLig/static/js/2.4d7a0625.chunk.js.map",
+    "index.html": "/PremLig/index.html",
+    "static/css/main.dbdc8c97.chunk.css.map": "/PremLig/static/css/main.dbdc8c97.chunk.css.map",
+    "static/js/2.4d7a0625.chunk.js.LICENSE.txt": "/PremLig/static/js/2.4d7a0625.chunk.js.LICENSE.txt",
+    "static/media/styles.scss": "/PremLig/static/media/Premier-League.73cb30ce.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bf1c4685.js",
+    "static/js/2.4d7a0625.chunk.js",
+    "static/css/main.dbdc8c97.chunk.css",
+    "static/js/main.f173dc12.chunk.js"
+  ]
+}
