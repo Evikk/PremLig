@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/PremLig/static/css/main.dbdc8c97.chunk.css",
-    "main.js": "/PremLig/static/js/main.f173dc12.chunk.js",
-    "main.js.map": "/PremLig/static/js/main.f173dc12.chunk.js.map",
+    "main.js": "/PremLig/static/js/main.79196475.chunk.js",
+    "main.js.map": "/PremLig/static/js/main.79196475.chunk.js.map",
     "runtime-main.js": "/PremLig/static/js/runtime-main.bf1c4685.js",
     "runtime-main.js.map": "/PremLig/static/js/runtime-main.bf1c4685.js.map",
     "static/js/2.4d7a0625.chunk.js": "/PremLig/static/js/2.4d7a0625.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.bf1c4685.js",
     "static/js/2.4d7a0625.chunk.js",
     "static/css/main.dbdc8c97.chunk.css",
-    "static/js/main.f173dc12.chunk.js"
+    "static/js/main.79196475.chunk.js"
   ]
 }
