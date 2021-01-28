@@ -1,0 +1,38 @@
+.main-container {
+    background-color: #f6f9fc;
+    display: grid;
+    grid-template-columns: 10vw 1fr 10vw;
+
+    & > * {
+        grid-column: 2;
+    }
+
+    & .full {
+        grid-column: 1 /-1;
+    }
+}
+
+main {
+    min-height: calc(100vh - 103px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 860px) {
+    .main-container > * {
+        grid-column: 1 /-1;
+    }
+
+    header {
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+    }
+    main {
+        margin-top: 158px;
+    }
+    .filter-sort-container {
+        grid-template-columns: 6.7% 1.2fr 2.9fr 3.7fr 3fr;
+    }
+}

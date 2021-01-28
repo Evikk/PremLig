@@ -1,0 +1,50 @@
+button {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 22px;
+    outline: none;
+    border: none;
+    background: rgb(215, 97, 97);
+    color: rgb(44, 43, 43);
+}
+
+button:hover {
+    background: rgb(206, 54, 54);
+    color: rgb(31, 31, 31);
+}
+select {
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 25px 10px 15px;
+    outline: none;
+    border: none;
+    background: #e6e6e6;
+    color: #7b7b7b;
+    appearance: none;
+    &:hover,
+    &:focus {
+        color: black;
+        background-color: #cccccc;
+    }
+    &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    &:hover ~ .select-arrow,
+    &:focus ~ .select-arrow {
+        border-top-color: black;
+    }
+}
+
+.select-arrow {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0 5px;
+    border-color: #7b7b7b transparent transparent transparent;
+}

@@ -1,9 +1,19 @@
-import "../assets/styles/filterSort.css"
-
-export function FilterSort ({ handleSortFilter, clearFavorites }) {
+export function FilterSort ({ handleSortFilter, clearFavorites, showFavOnly }) {
+    
     return (
         <section className="toolbar-container">
             <div className="filter-sort-container">
+                <div className="fav-toggle">
+                    <input type="checkbox" hidden name="favOnly" id="favOnly" onChange={(ev)=>handleSortFilter(ev)}/>
+                    <label htmlFor="favOnly">
+                        <div className="fav-wrapper">
+                            {showFavOnly ? 
+                                <i className="fa fa-star yellow"></i> :
+                                <i className="fa fa-star-o"></i>
+                            }
+                        </div>
+                    </label>
+                </div>
                 <div className="select-container">
                     <select name="sortBy" onChange={(ev)=>handleSortFilter(ev)}>
                         <option value="">Sort by</option>
@@ -12,10 +22,6 @@ export function FilterSort ({ handleSortFilter, clearFavorites }) {
                         <option value="favorite">Favorites First</option>
                     </select>
                     <div className="select-arrow"></div>
-                </div>
-                <div>
-                    <input type="checkbox" name="favOnly" id="favOnly" onChange={(ev)=>handleSortFilter(ev)}/>
-                    <label htmlFor="favOnly">Show Favorites Only</label>
                 </div>
                 <div className="select-container">
                     <select name="paginate" onChange={(ev)=>handleSortFilter(ev)}>
@@ -26,9 +32,9 @@ export function FilterSort ({ handleSortFilter, clearFavorites }) {
                     </select>
                     <div className="select-arrow"></div>
                 </div>
-            </div>
             <div className="btn-container">
-                <button onClick={()=>clearFavorites()}>Clear Favorites</button>
+                <button onClick={()=>clearFavorites()}><i className="fa fa-ban"></i><span>Clear Favorites</span></button>
+            </div>
             </div>
         </section>
     )

@@ -1,6 +1,6 @@
 import { Header } from "./cmps/Header";
 import { Main } from "./views/Main";
-import "./assets/styles/base.css";
+import './styles/styles.scss'
 
 export function App() {
     return (

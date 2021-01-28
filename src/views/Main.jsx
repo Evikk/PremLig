@@ -21,6 +21,7 @@ export class Main extends Component {
 
     componentDidMount(){
         this.loadTeams()
+        
     }
 
     loadTeams = async()=> {
@@ -37,7 +38,7 @@ export class Main extends Component {
     }
 
     toggleFavorite = (teamId) => {
-        const teamsCopy = this.state.teams
+        const teamsCopy = [...this.state.teams]
         const teamIdx = teamsCopy.findIndex(team => team.team_id === teamId)
         const team = teamsCopy[teamIdx]
         team.isFavorite = !team.isFavorite
@@ -102,20 +103,30 @@ export class Main extends Component {
     }
 
     render(){
+        const { showFavOnly } = this.state
         const teams = this.getTeamsForDisplay()
+        var teamsLength
+        showFavOnly ? teamsLength = teams.length : teamsLength = this.state.teams.length
         return (
             <main>
                 <div>
-                    <FilterSort handleSortFilter={this.handleSortFilter} clearFavorites={this.clearFavorites}/>
-                    <TeamList teams={teams} toggleFavorite={this.toggleFavorite}/>
+                    <FilterSort 
+                        handleSortFilter={this.handleSortFilter} 
+                        clearFavorites={this.clearFavorites}
+                        showFavOnly={showFavOnly}
+                    />
+                    <TeamList 
+                        teams={teams} 
+                        toggleFavorite={this.toggleFavorite}
+                    />
                 </div>
                 {this.state.pagination.itemsToShow !== 0 &&
-                <Pagination 
-                    teamsLength={this.state.teams.length} 
-                    itemsPerPage={this.state.pagination.itemsToShow}
-                    currPage={this.state.pagination.currPage}
-                    onPageChange={this.onPageChange}
-                />
+                    <Pagination 
+                        teamsLength={teamsLength} 
+                        itemsPerPage={this.state.pagination.itemsToShow}
+                        currPage={this.state.pagination.currPage}
+                        onPageChange={this.onPageChange}
+                    />
                 }
             </main>
         )

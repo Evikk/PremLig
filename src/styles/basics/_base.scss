@@ -16,14 +16,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.main-container {
-    background-color:#F6F9FC;
-    display: grid;
-    grid-template-columns: 10vw 1fr 10vw;
-}
-.main-container > * { grid-column: 2; }
-.main-container.full { grid-column: 1 /-1; }
-
 a {
   text-decoration: none;
   color: whitesmoke;
@@ -33,11 +25,7 @@ img {
   width: 100%;
 }
 
-main {
-  min-height: calc(100vh - 103px);
-  display: flex;
-  flex-direction: column;
-}
+
 
 @media (max-width: 860px) {
   html {
@@ -47,8 +35,5 @@ main {
 @media (max-width: 580px) {
   html {
     font-size: 16px;
-  }
-  .main-container > * {
-    grid-column: 1 /-1;
   }
 }

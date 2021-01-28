@@ -1,8 +1,6 @@
-import "../assets/styles/teamItem.css"
-
 export function TeamItem ({team, toggleFavorite}) {
     return (
-        <tr className="list-item" onClick={()=>toggleFavorite(team.team_id)}>
+        <tr className={team.isFavorite ? `list-item blink` : `list-item`} onClick={()=>toggleFavorite(team.team_id)}>
             <td className="star-icon-wrapper">{team.isFavorite ? <i className="fa fa-star yellow"></i> : <i className="fa fa-star-o"></i>}</td>
             <td>
                 <div className="logo-wrapper">
