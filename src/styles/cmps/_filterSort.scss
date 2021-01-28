@@ -7,7 +7,7 @@
 
 .filter-sort-container {
     display: grid;
-    grid-template-columns: 8.5% 2fr 4fr 2fr 6.5fr;
+    grid-template-columns: 8.5% 1.9fr 3.5fr 1fr 6fr;
     width: 100%;
 }
 
@@ -48,6 +48,9 @@ i span {
 
 
 @media (max-width: 860px) {
+    .filter-sort-container {
+        grid-template-columns: 6.7% 1.2fr 2.9fr 3.7fr 3fr;
+    }
     .toolbar-container {
         position: fixed;
         z-index: 3;
