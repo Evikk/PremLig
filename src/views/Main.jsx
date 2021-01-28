@@ -105,8 +105,7 @@ export class Main extends Component {
     render(){
         const { showFavOnly } = this.state
         const teams = this.getTeamsForDisplay()
-        var teamsLength
-        showFavOnly ? teamsLength = teams.length : teamsLength = this.state.teams.length
+        
         return (
             <main>
                 <div>
@@ -120,9 +119,9 @@ export class Main extends Component {
                         toggleFavorite={this.toggleFavorite}
                     />
                 </div>
-                {this.state.pagination.itemsToShow !== 0 &&
+                {this.state.pagination.itemsToShow !== 0 && !showFavOnly &&
                     <Pagination 
-                        teamsLength={teamsLength} 
+                        teamsLength={this.state.teams.length}
                         itemsPerPage={this.state.pagination.itemsToShow}
                         currPage={this.state.pagination.currPage}
                         onPageChange={this.onPageChange}
